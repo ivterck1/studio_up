@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Studio UP | Tu estilo, tu mejor versión</title>
+    
+    <!-- Tipografías Premium: Plus Jakarta Sans para un look moderno y tech-beauty -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN para archivo único) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Iconografía minimalista y elegante) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        beauty: {
+                            dark: '#050505',
+                            card: 'rgba(255, 255, 255, 0.03)',
+                            pink: '#ff4d6d',
+                            blush: '#f8c8d8',
+                            champagne: '#f7e7ce',
+                            cyan: '#00c2ff'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Ajustes base y utilidades personalizadas */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Selección de texto elegante */
+        ::selection {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        /* Ocultar scrollbar para un look de app nativa pero manteniendo funcionalidad */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Efectos de Glassmorphism Premium */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-button {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Ajuste de animación con delay dinámico */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+</head>
+<body class="relative min-h-screen">
+
+    <!-- Sistema de Partículas Background (Canvas) -->
+    <canvas id="beautyCanvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none opacity-80"></canvas>
+
+    <!-- Contenedor Principal (z-10 para estar sobre el canvas) -->
+    <main class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-8 sm:py-12 flex flex-col items-center">
+        
+        <!-- Header / Logo -->
+        <header class="w-full flex justify-center mb-10 sm:mb-16 opacity-0 animate-fade-in">
+            <!-- NOTA: Reemplaza 'logo.png' con la ruta de tu imagen real -->
+            <img src="img/logo.png" alt="Studio UP" class="h-16 sm:h-20 object-contain drop-shadow-2xl">
+        </header>
+
+        <!-- Hero Section -->
+        <section class="w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 mb-24">
+            
+            <!-- Hero Text -->
+            <div class="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start w-full opacity-0 animate-fade-in delay-100">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6">
+                    Tu estilo,<br>
+                    <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-beauty-pink via-beauty-blush to-beauty-champagne">
+                        tu mejor versión
+                    </span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-white/60 font-light leading-relaxed max-w-xl mb-10">
+                    Somos una estética unisex especializada en cortes modernos para caballeros, efectos y cambios de look para damas, colorimetría, tratamientos capilares y mucho más. ¡Haz tu cita hoy mismo!
+                </p>
+
+                <!-- CTAs (Botones WhatsApp) -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                    <a href="https://wa.me/?text=Hola%20Ismael,%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" 
+                       class="glass-button group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 hover:border-beauty-pink/50 hover:shadow-[0_0_20px_rgba(255,77,109,0.2)] w-full sm:w-auto">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-beauty-pink group-hover:scale-110 transition-transform"></i>
+                        WhatsApp Ismael Pacheco
+                    </a>
+                    
+                    <a href="https://wa.me/?text=Hola%20Sonia,%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" 
+                       class="glass-button group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 hover:border-beauty-cyan/50 hover:shadow-[0_0_20px_rgba(0,194,255,0.2)] w-full sm:w-auto">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-beauty-cyan group-hover:scale-110 transition-transform"></i>
+                        WhatsApp Sonia Urbina
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="flex-1 w-full max-w-md lg:max-w-none relative opacity-0 animate-fade-in delay-200">
+                <!-- Resplandor detrás de la imagen -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-beauty-pink/20 to-beauty-cyan/20 blur-[80px] rounded-full -z-10"></div>
+                
+                <div class="relative rounded-[2rem] overflow-hidden glass-panel p-2 animate-float">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" 
+                         alt="Estética Unisex" 
+                         class="w-full aspect-[4/5] object-cover rounded-[1.5rem] grayscale-[20%] hover:grayscale-0 transition-all duration-700">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="w-full flex flex-col items-center opacity-0 animate-fade-in delay-300 mt-10">
+            <h2 class="text-3xl sm:text-4xl font-light mb-12 sm:mb-16 text-center">
+                Nuestros <span class="font-medium text-white">Servicios</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                
+                <!-- Servicio 1 -->
+                <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-pink/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-pink/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-pink/20 transition-all duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-champagne group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="scissors" class="w-6 h-6 z-10 relative"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-white">Corte para Caballero</h3>
+                    <p class="text-white/50 font-light text-sm leading-relaxed">Fade, degradados, cortes clásicos y modernos con acabado profesional.</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-cyan/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-cyan/20 transition-all duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-cyan group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="palette" class="w-6 h-6 z-10 relative"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-white">Color y Efectos</h3>
+                    <p class="text-white/50 font-light text-sm leading-relaxed">Balayage, mechas, tintes, efectos de color y transformación total.</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-blush/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-blush/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-blush/20 transition-all duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-blush group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="sparkles" class="w-6 h-6 z-10 relative"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-white">Corte para Dama</h3>
+                    <p class="text-white/50 font-light text-sm leading-relaxed">Diseños modernos, estilizado profesional y asesoría de imagen.</p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-pink/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-pink/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-pink/20 transition-all duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-pink group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="droplets" class="w-6 h-6 z-10 relative"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-white">Tratamientos</h3>
+                    <p class="text-white/50 font-light text-sm leading-relaxed">Hidratación, keratina, reparación capilar y cuidado profundo.</p>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-white/30 relative overflow-hidden md:col-span-2 lg:col-span-1">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-all duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="star" class="w-6 h-6 z-10 relative"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-white">Uñas acrilicas</h3>
+                    <p class="text-white/50 font-light text-sm leading-relaxed">Diseños que rompen el molde. Desde lo clásico hasta el estilo más vanguardista.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="w-full mt-24 pt-8 border-t border-white/10 text-center">
+            <p class="text-white/30 font-light text-xs sm:text-sm tracking-wide">
+                © 2026 Estética Unisex | Elegancia, estilo y confianza
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Scripts Interactivos -->
+    <script>
+        // 1. Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // 2. Sistema de Partículas Beauty-Tech (HTML5 Canvas)
+        const canvas = document.getElementById('beautyCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let particlesArray = [];
+        const colors = ['#ff4d6d', '#f8c8d8', '#f7e7ce', '#00c2ff', '#ffffff'];
+
+        // Ajustar el canvas al tamaño de la ventana
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Clase Partícula
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                // Partículas muy pequeñas simulando polvo cosmético/brillos
+                this.size = Math.random() * 2 + 0.1; 
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Rebote suave en los bordes
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                
+                // Efecto de brillo
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.globalAlpha = 1; // reset
+                ctx.shadowBlur = 0; // reset
+            }
+        }
+
+        // Inicializar partículas (menos densidad en móviles para rendimiento)
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = window.innerWidth < 768 ? 40 : 80;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        // Bucle de animación
+        function animate() {
+            // Limpiar canvas con ligera opacidad para dejar un pequeño rastro
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                
+                // Conectar partículas cercanas con líneas súper sutiles
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 - distance/2000})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Ejecutar sistema
+        init();
+        animate();
+    </script>
+</body>
+</html>
