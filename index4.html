@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Studio UP | Tu estilo, tu mejor versión</title>
+    
+    <!-- Tipografía Geométrica y Vanguardista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            dark: '#030303',
+                            surface: '#0a0a0a',
+                            border: '#1a1a1a',
+                            pink: '#ff1453',
+                            cyan: '#00f0ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+        }
+
+        /* Ocultar barra de scroll para un look de App Nativa */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Efectos Glassmorphism Agresivos */
+        .glass-card {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tipografía Outline */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+        }
+
+        /* Animaciones personalizadas */
+        .reveal {
+            animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Gradientes dinámicos para botones */
+        .btn-neon-pink {
+            background: linear-gradient(90deg, #ff1453, #b80036);
+            box-shadow: 0 0 20px rgba(255, 20, 83, 0.2);
+        }
+        .btn-neon-cyan {
+            background: linear-gradient(90deg, #00f0ff, #008ba3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden lg:overflow-hidden flex flex-col lg:flex-row text-white">
+
+    <!-- Canvas Background: Malla Digital Orgánica -->
+    <!-- Aumentamos un poco la opacidad para que resalte más en móvil -->
+    <canvas id="techCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-50 mix-blend-screen"></canvas>
+
+    <!-- PANEL IZQUIERDO: STICKY HERO -->
+    <!-- Cambiado a flex-col con flex-1 en el centro para una distribución perfecta en móvil -->
+  <!-- PANEL IZQUIERDO: STICKY HERO -->
+    <!-- Quitamos el justify-center estricto y usamos márgenes automáticos (my-auto) con un gap mayor -->
+    <aside class="relative z-10 w-full lg:w-5/12 min-h-[100dvh] lg:min-h-0 lg:h-screen flex flex-col p-6 sm:p-8 lg:p-8 xl:p-12 border-b lg:border-b-0 lg:border-r border-cyber-border bg-cyber-dark/50 backdrop-blur-md lg:overflow-y-auto hide-scroll">
+        
+        <!-- Top: Logo -->
+        <div class="flex-none reveal pt-2 lg:pt-0">
+            <img src="logo.png" alt="Studio UP" class="h-16 lg:h-14 xl:h-20 2xl:h-24 object-contain">
+        </div>
+
+        <!-- Middle: Headline & Desc -->
+        <!-- Cambiamos a my-auto para que distribuya el espacio de forma más natural y aumentamos tamaños base -->
+        <div class="flex-1 flex flex-col my-auto justify-center gap-6 py-10 lg:py-4 xl:py-8">
+            <!-- Aumentamos de text-5xl a text-6xl (o 5xl con tracking más apretado) para móvil -->
+            <h1 class="font-display text-[3.5rem] leading-[0.95] sm:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tighter reveal delay-1 antialiased">
+                <span class="text-outline block mb-3">Tu estilo,</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-pink to-cyber-cyan block">tu mejor versión</span>
+            </h1>
+            
+            <!-- Engrosamos un poco el texto (font-normal en vez de light) y aumentamos el tamaño base -->
+            <p class="font-sans text-white/60 text-base sm:text-lg lg:text-sm xl:text-base font-normal leading-relaxed max-w-md reveal delay-2">
+                Somos una estética unisex especializada en cortes modernos para caballeros, efectos y cambios de look para damas, colorimetría, tratamientos capilares y mucho más. <strong class="text-white font-semibold">¡Haz tu cita hoy mismo!</strong>
+            </p>
+        </div>
+
+        <!-- Bottom: CTAs -->
+        <div class="flex-none flex flex-col gap-3 xl:gap-4 reveal delay-3 pb-6 lg:pb-0">
+            <a href="https://wa.me/?text=Hola%20Ismael,%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" 
+               class="btn-neon-pink group relative flex items-center justify-between px-5 py-4 xl:px-6 xl:py-4 rounded-2xl text-sm font-bold tracking-wide transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <span class="flex items-center gap-3">
+                    <i data-lucide="message-square" class="w-5 h-5 text-white/90"></i>
+                    WhatsApp Ismael Pacheco
+                </span>
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            
+            <a href="https://wa.me/?text=Hola%20Sonia,%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" 
+               class="btn-neon-cyan text-cyber-dark group relative flex items-center justify-between px-5 py-4 xl:px-6 xl:py-4 rounded-2xl text-sm font-bold tracking-wide transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <span class="flex items-center gap-3">
+                    <i data-lucide="message-square" class="w-5 h-5 text-cyber-dark/90"></i>
+                    WhatsApp Sonia Urbina
+                </span>
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- PANEL DERECHO: SCROLLABLE FEED -->
+    <main class="relative z-10 w-full lg:w-7/12 h-auto lg:h-screen overflow-y-auto hide-scroll bg-transparent">
+        <div class="p-4 sm:p-8 lg:p-10 xl:p-14">
+            
+            <!-- Hero Image Disruptiva -->
+            <div class="reveal delay-1 relative w-full h-[60vh] lg:h-[70vh] rounded-[2rem] overflow-hidden mb-12 xl:mb-16 border border-white/5">
+                <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" 
+                     alt="Estética Unisex" 
+                     class="w-full h-full object-cover filter brightness-75 contrast-125">
+                
+                <div class="absolute bottom-6 left-6 z-20 glass-card px-5 py-3 rounded-full flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
+                    <span class="text-xs font-display tracking-widest uppercase">Premium Beauty</span>
+                </div>
+            </div>
+
+            <!-- Header de Servicios -->
+            <div class="flex items-end justify-between mb-8">
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">
+                    Nuestros<br><span class="text-outline">Servicios</span>
+                </h2>
+                <i data-lucide="layout-grid" class="w-8 h-8 text-white/20"></i>
+            </div>
+
+            <!-- Bento Grid de Servicios -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-20">
+                
+                <div class="glass-card sm:col-span-2 p-8 rounded-[1.5rem] group hover:border-cyber-cyan/50 transition-colors duration-300 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-cyber-cyan/10 blur-3xl rounded-full"></div>
+                    <i data-lucide="scissors" class="w-8 h-8 text-cyber-cyan mb-12 group-hover:scale-110 transition-transform origin-left"></i>
+                    <h3 class="font-display text-2xl font-bold mb-2">Corte para Caballero</h3>
+                    <p class="text-white/50 text-sm max-w-sm">Fade, degradados, cortes clásicos y modernos con acabado profesional.</p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-[1.5rem] group hover:border-cyber-pink/50 transition-colors duration-300">
+                    <i data-lucide="palette" class="w-7 h-7 text-cyber-pink mb-8 group-hover:scale-110 transition-transform origin-left"></i>
+                    <h3 class="font-display text-xl font-bold mb-2">Color y Efectos</h3>
+                    <p class="text-white/50 text-sm">Balayage, mechas, tintes, efectos de color y transformación total.</p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-[1.5rem] group hover:border-white/50 transition-colors duration-300">
+                    <i data-lucide="sparkles" class="w-7 h-7 text-white mb-8 group-hover:scale-110 transition-transform origin-left"></i>
+                    <h3 class="font-display text-xl font-bold mb-2">Corte para Dama</h3>
+                    <p class="text-white/50 text-sm">Diseños modernos, estilizado profesional y asesoría de imagen.</p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-[1.5rem] group hover:border-cyber-cyan/50 transition-colors duration-300">
+                    <i data-lucide="droplet" class="w-7 h-7 text-cyber-cyan mb-8 group-hover:scale-110 transition-transform origin-left"></i>
+                    <h3 class="font-display text-xl font-bold mb-2">Tratamientos</h3>
+                    <p class="text-white/50 text-sm">Hidratación, keratina, reparación capilar y cuidado profundo.</p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-[1.5rem] group hover:border-cyber-pink/50 transition-colors duration-300">
+                    <i data-lucide="star" class="w-7 h-7 text-cyber-pink mb-8 group-hover:scale-110 transition-transform origin-left"></i>
+                    <h3 class="font-display text-xl font-bold mb-2">Uñas acrilicas</h3>
+                    <p class="text-white/50 text-sm">Diseños que rompen el molde. Desde lo clásico hasta el estilo más vanguardista.</p>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="pb-8 pt-4 border-t border-cyber-border text-left flex items-center justify-between">
+                <p class="text-white/30 font-sans text-xs sm:text-sm uppercase tracking-widest">
+                    © 2026 Estética Unisex
+                </p>
+                <p class="text-white/30 font-sans text-xs sm:text-sm text-right">
+                    Elegancia, estilo y confianza
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Lógica de Interacción -->
+    <script>
+        lucide.createIcons();
+
+        // Canvas: Malla Digital Orgánica
+        const canvas = document.getElementById('techCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let points = [];
+        let mouse = { x: -1000, y: -1000 };
+        let time = 0; // Variable de tiempo para respiración orgánica
+
+        const connectionRadius = 85; 
+        const mouseRadius = 150; 
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            // Si es celular, la cuadrícula es más densa (40px) para que se vean más puntos
+            const currentSpacing = window.innerWidth < 768 ? 40 : 60; 
+            
+            for (let x = 0; x < width + currentSpacing; x += currentSpacing) {
+                for (let y = 0; y < height + currentSpacing; y += currentSpacing) {
+                    points.push({
+                        originX: x,
+                        originY: y,
+                        x: x,
+                        y: y,
+                        vx: 0,
+                        vy: 0,
+                        randomOffset: Math.random() * 100 // Desfase para que no respiren todos al mismo tiempo
+                    });
+                }
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+        window.addEventListener('touchmove', (e) => {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        });
+
+        // Cuando sacas el dedo/mouse, los puntos siguen respirando
+        window.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+        window.addEventListener('touchend', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            time += 0.015; // Velocidad de la respiración general
+            
+            ctx.strokeStyle = 'rgba(255, 20, 83, 0.2)'; // Rosa neón
+            ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';    // Cyan neón
+
+            points.forEach(p => {
+                // FÍSICA 1: Movimiento orgánico constante (Respiración)
+                let targetX = p.originX + Math.sin(time + p.randomOffset) * 10;
+                let targetY = p.originY + Math.cos(time + p.randomOffset) * 10;
+
+                // FÍSICA 2: Atracción hacia su punto de origen dinámico
+                let dxOrig = targetX - p.x;
+                let dyOrig = targetY - p.y;
+                p.vx += dxOrig * 0.02;
+                p.vy += dyOrig * 0.02;
+
+                // FÍSICA 3: Repulsión del dedo o mouse
+                let dxMouse = mouse.x - p.x;
+                let dyMouse = mouse.y - p.y;
+                let distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                
+                if (distMouse < mouseRadius) {
+                    let force = (mouseRadius - distMouse) / mouseRadius;
+                    p.vx -= (dxMouse / distMouse) * force * 2.5;
+                    p.vy -= (dyMouse / distMouse) * force * 2.5;
+                }
+
+                // Fricción para suavizar el movimiento
+                p.vx *= 0.88;
+                p.vy *= 0.88;
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Dibujar el nodo
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Conectar nodos cercanos
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    let p1 = points[i];
+                    let p2 = points[j];
+                    
+                    let dx = p1.x - p2.x;
+                    let dy = p1.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionRadius) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.globalAlpha = 1 - (dist / connectionRadius);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        render();
+    </script>
+</body>
+</html>
