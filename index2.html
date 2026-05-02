@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio UP | Tu estilo, tu mejor versión</title>
     
-    <!-- Tipografías Premium: Plus Jakarta Sans para un look moderno y tech-beauty -->
+    <!-- Tipografías Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN para archivo único) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons (Iconografía minimalista y elegante) -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Configuración personalizada de Tailwind -->
@@ -54,7 +54,6 @@
     </script>
 
     <style>
-        /* Ajustes base y utilidades personalizadas */
         body {
             background-color: #050505;
             color: #ffffff;
@@ -62,13 +61,11 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* Selección de texto elegante */
         ::selection {
             background-color: #ff4d6d;
             color: white;
         }
 
-        /* Ocultar scrollbar para un look de app nativa pero manteniendo funcionalidad */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -80,7 +77,6 @@
             border-radius: 10px;
         }
 
-        /* Efectos de Glassmorphism Premium */
         .glass-panel {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(16px);
@@ -95,7 +91,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Ajuste de animación con delay dinámico */
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
@@ -103,16 +98,15 @@
 </head>
 <body class="relative min-h-screen">
 
-    <!-- Sistema de Partículas Background (Canvas) -->
+    <!-- Canvas para Partículas -->
     <canvas id="beautyCanvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none opacity-80"></canvas>
 
-    <!-- Contenedor Principal (z-10 para estar sobre el canvas) -->
-    <main class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-8 sm:py-12 flex flex-col items-center">
+    <main class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-8 sm:py-12 flex flex-col items-center lg:items-stretch">
         
-        <!-- Header / Logo -->
-        <header class="w-full flex justify-center mb-10 sm:mb-16 opacity-0 animate-fade-in">
-            <!-- NOTA: Reemplaza 'logo.png' con la ruta de tu imagen real -->
-            <img src="img/logo.png" alt="Studio UP" class="h-16 sm:h-20 object-contain drop-shadow-2xl">
+        <!-- Header / Logo Ajustado -->
+        <!-- En móvil: centrado y h-20. En desktop (lg): alineado a la izquierda, h-36, y margen inferior ajustado -->
+        <header class="w-full flex justify-center lg:justify-start mb-10 lg:mb-6 opacity-0 animate-fade-in">
+            <img src="img/logo.png" alt="Studio UP" class="h-20 sm:h-24 lg:h-50 w-auto object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 origin-left">
         </header>
 
         <!-- Hero Section -->
@@ -120,7 +114,7 @@
             
             <!-- Hero Text -->
             <div class="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start w-full opacity-0 animate-fade-in delay-100">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6 mt-4 lg:mt-0">
                     Tu estilo,<br>
                     <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-beauty-pink via-beauty-blush to-beauty-champagne">
                         tu mejor versión
@@ -131,7 +125,7 @@
                     Somos una estética unisex especializada en cortes modernos para caballeros, efectos y cambios de look para damas, colorimetría, tratamientos capilares y mucho más. ¡Haz tu cita hoy mismo!
                 </p>
 
-                <!-- CTAs (Botones WhatsApp) -->
+                <!-- Botones -->
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                     <a href="https://wa.me/?text=Hola%20Ismael,%20quisiera%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" 
                        class="glass-button group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 hover:border-beauty-pink/50 hover:shadow-[0_0_20px_rgba(255,77,109,0.2)] w-full sm:w-auto">
@@ -149,7 +143,6 @@
 
             <!-- Hero Image -->
             <div class="flex-1 w-full max-w-md lg:max-w-none relative opacity-0 animate-fade-in delay-200">
-                <!-- Resplandor detrás de la imagen -->
                 <div class="absolute inset-0 bg-gradient-to-tr from-beauty-pink/20 to-beauty-cyan/20 blur-[80px] rounded-full -z-10"></div>
                 
                 <div class="relative rounded-[2rem] overflow-hidden glass-panel p-2 animate-float">
@@ -168,7 +161,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 
-                <!-- Servicio 1 -->
                 <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-pink/30 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-pink/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-pink/20 transition-all duration-500"></div>
                     <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-champagne group-hover:scale-110 transition-transform duration-500">
@@ -178,7 +170,6 @@
                     <p class="text-white/50 font-light text-sm leading-relaxed">Fade, degradados, cortes clásicos y modernos con acabado profesional.</p>
                 </div>
 
-                <!-- Servicio 2 -->
                 <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-cyan/30 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-cyan/20 transition-all duration-500"></div>
                     <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-cyan group-hover:scale-110 transition-transform duration-500">
@@ -188,7 +179,6 @@
                     <p class="text-white/50 font-light text-sm leading-relaxed">Balayage, mechas, tintes, efectos de color y transformación total.</p>
                 </div>
 
-                <!-- Servicio 3 -->
                 <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-blush/30 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-blush/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-blush/20 transition-all duration-500"></div>
                     <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-blush group-hover:scale-110 transition-transform duration-500">
@@ -198,7 +188,6 @@
                     <p class="text-white/50 font-light text-sm leading-relaxed">Diseños modernos, estilizado profesional y asesoría de imagen.</p>
                 </div>
 
-                <!-- Servicio 4 -->
                 <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-beauty-pink/30 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-beauty-pink/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-beauty-pink/20 transition-all duration-500"></div>
                     <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-beauty-pink group-hover:scale-110 transition-transform duration-500">
@@ -208,7 +197,6 @@
                     <p class="text-white/50 font-light text-sm leading-relaxed">Hidratación, keratina, reparación capilar y cuidado profundo.</p>
                 </div>
 
-                <!-- Servicio 5 -->
                 <div class="glass-panel rounded-3xl p-8 group hover:-translate-y-2 transition-all duration-500 hover:border-white/30 relative overflow-hidden md:col-span-2 lg:col-span-1">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-all duration-500"></div>
                     <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform duration-500">
@@ -230,19 +218,15 @@
 
     </main>
 
-    <!-- Scripts Interactivos -->
     <script>
-        // 1. Inicializar iconos de Lucide
         lucide.createIcons();
 
-        // 2. Sistema de Partículas Beauty-Tech (HTML5 Canvas)
         const canvas = document.getElementById('beautyCanvas');
         const ctx = canvas.getContext('2d');
         
         let particlesArray = [];
         const colors = ['#ff4d6d', '#f8c8d8', '#f7e7ce', '#00c2ff', '#ffffff'];
 
-        // Ajustar el canvas al tamaño de la ventana
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -250,12 +234,10 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Clase Partícula
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                // Partículas muy pequeñas simulando polvo cosmético/brillos
                 this.size = Math.random() * 2 + 0.1; 
                 this.speedX = Math.random() * 1 - 0.5;
                 this.speedY = Math.random() * 1 - 0.5;
@@ -267,7 +249,6 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Rebote suave en los bordes
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
@@ -276,19 +257,17 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 
-                // Efecto de brillo
                 ctx.shadowBlur = 10;
                 ctx.shadowColor = this.color;
                 
                 ctx.fillStyle = this.color;
                 ctx.globalAlpha = this.opacity;
                 ctx.fill();
-                ctx.globalAlpha = 1; // reset
-                ctx.shadowBlur = 0; // reset
+                ctx.globalAlpha = 1; 
+                ctx.shadowBlur = 0; 
             }
         }
 
-        // Inicializar partículas (menos densidad en móviles para rendimiento)
         function init() {
             particlesArray = [];
             let numberOfParticles = window.innerWidth < 768 ? 40 : 80;
@@ -297,16 +276,13 @@
             }
         }
 
-        // Bucle de animación
         function animate() {
-            // Limpiar canvas con ligera opacidad para dejar un pequeño rastro
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
                 
-                // Conectar partículas cercanas con líneas súper sutiles
                 for (let j = i; j < particlesArray.length; j++) {
                     const dx = particlesArray[i].x - particlesArray[j].x;
                     const dy = particlesArray[i].y - particlesArray[j].y;
@@ -325,7 +301,6 @@
             requestAnimationFrame(animate);
         }
 
-        // Ejecutar sistema
         init();
         animate();
     </script>
