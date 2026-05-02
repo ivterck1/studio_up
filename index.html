@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!-- 
+========================================================
+DOCUMENTO HTML5
+Esta línea le indica al navegador que este archivo
+está escrito en HTML5, la versión moderna de HTML.
+Esto ayuda a que todo funcione correctamente.
+========================================================
+-->
+
+<html lang="es">
+<!-- 
+========================================================
+ETIQUETA PRINCIPAL HTML
+"lang=es" indica que todo el contenido de la página
+está en español, esto ayuda a Google, navegadores
+y lectores de pantalla.
+========================================================
+-->
+
+<head>
+
+<!-- 
+========================================================
+CONFIGURACIÓN GENERAL DEL SITIO
+Todo lo que va dentro de <head> no se muestra
+directamente en pantalla, pero sirve para configurar
+la página web.
+========================================================
+-->
+
+<meta charset="UTF-8">
+<!-- 
+Permite que se muestren correctamente letras especiales
+como á, é, í, ó, ú, ñ y otros símbolos.
+Muy importante para el idioma español.
+-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 
+Hace que la página sea RESPONSIVE.
+
+Esto permite que el diseño se adapte correctamente
+a celulares, tablets y computadoras sin romperse.
+Es obligatorio en diseños modernos.
+-->
+
+<title>Estética Unisex | Belleza y Estilo</title>
+<!-- 
+Título que aparece en la pestaña del navegador
+cuando el usuario abre la página.
+También ayuda mucho para SEO (Google).
+-->
+
+<!-- 
+========================================================
+CONEXIÓN CON GOOGLE FONTS
+Aquí se importa la tipografía "Poppins"
+para darle un estilo moderno y profesional.
+========================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- 
+Preconecta más rápido con Google Fonts
+para mejorar la velocidad de carga.
+-->
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 
+Segunda preconexión necesaria para cargar
+correctamente las fuentes externas.
+-->
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- 
+Aquí se carga oficialmente la fuente Poppins
+con varios grosores:
+300 = delgada
+400 = normal
+500 = media
+600 = semi negrita
+700 = negrita
+800 = extra negrita
+-->
+
+<style>
+
+/* 
+########################################################
+############### INICIO DE CSS / DISEÑO #################
+########################################################
+*/
+
+/* 
+========================================================
+RESET GENERAL
+Esto elimina estilos automáticos del navegador
+para tener control total sobre el diseño.
+========================================================
+*/
+*{
+    margin:0;
+    /* elimina márgenes automáticos */
+
+    padding:0;
+    /* elimina espacios internos automáticos */
+
+    box-sizing:border-box;
+    /* hace que padding y border no rompan tamaños */
+
+    font-family: 'Poppins', sans-serif;
+    /* aplica la fuente moderna a todo el sitio */
+}
+
+/* 
+========================================================
+ESTILO GENERAL DEL BODY
+El body representa toda la página visible.
+========================================================
+*/
+body{
+    background: #0f0f0f;
+    /* fondo oscuro elegante */
+
+    color: white;
+    /* color general del texto */
+
+    overflow-x: hidden;
+    /* evita scroll horizontal no deseado */
+}
+
+/* 
+========================================================
+FONDO ANIMADO DECORATIVO
+Se crea con ::before sin usar imágenes.
+Da un efecto premium y moderno.
+========================================================
+*/
+body::before{
+    content:"";
+    /* obligatorio para pseudo-elementos */
+
+    position: fixed;
+    /* se queda fijo aunque se haga scroll */
+
+    width: 100%;
+    height: 100%;
+    /* ocupa toda la pantalla */
+
+    background: radial-gradient(circle at top right, #ff4d6d, transparent 30%),
+                radial-gradient(circle at bottom left, #00c2ff, transparent 30%);
+    /* dos luces degradadas decorativas */
+
+    z-index: -1;
+    /* manda el fondo detrás de todo */
+
+    animation: glow 8s ease-in-out infinite alternate;
+    /* animación continua suave */
+}
+
+/* 
+========================================================
+ANIMACIÓN DEL FONDO
+Hace que el brillo cambie lentamente.
+========================================================
+*/
+@keyframes glow{
+    from{
+        filter: blur(20px);
+        /* menos desenfoque */
+
+        transform: scale(1);
+        /* tamaño normal */
+    }
+
+    to{
+        filter: blur(60px);
+        /* más desenfoque */
+
+        transform: scale(1.1);
+        /* aumenta ligeramente */
+    }
+}
+
+/* 
+========================================================
+NAVBAR / BARRA SUPERIOR
+Aquí va el logo principal del negocio.
+========================================================
+*/
+nav{
+    display: flex;
+    /* activa Flexbox */
+
+    justify-content: space-between;
+    /* separa elementos */
+
+    align-items: center;
+    /* centra verticalmente */
+
+    padding: 25px 8%;
+    /* espacio interno superior e inferior */
+
+    backdrop-filter: blur(10px);
+    /* efecto vidrio moderno */
+}
+
+/* 
+========================================================
+LOGOTIPO PRINCIPAL CON IMAGEN
+Aquí controlamos el tamaño del logo
+y evitamos que se deforme.
+========================================================
+*/
+.logo img{
+    width: 150px;
+    /* tamaño ideal para navbar */
+
+    height: auto;
+    /* mantiene proporción original */
+
+    display: block;
+    /* elimina espacios innecesarios */
+
+    object-fit: contain;
+    /* evita deformaciones */
+
+    transition: 0.4s;
+    /* animación suave */
+}
+
+.logo img:hover{
+    transform: scale(1.05);
+    /* pequeño efecto premium */
+}
+
+/* 
+========================================================
+SECCIÓN HERO (PORTADA PRINCIPAL)
+Es la primera sección que ve el cliente.
+Debe impactar visualmente.
+========================================================
+*/
+.hero{
+    min-height: 90vh;
+    /* ocupa casi toda la pantalla */
+
+    display: flex;
+    /* diseño horizontal */
+
+    align-items: center;
+    /* centra verticalmente */
+
+    justify-content: space-between;
+    /* separa texto e imagen */
+
+    padding: 0 8%;
+    /* espacio lateral */
+
+    flex-wrap: wrap;
+    /* permite bajar elementos en móvil */
+}
+
+/* 
+========================================================
+COLUMNA DE TEXTO PRINCIPAL
+========================================================
+*/
+.hero-text{
+    flex: 1;
+    /* ocupa espacio flexible */
+
+    min-width: 300px;
+    /* evita que se haga demasiado pequeño */
+}
+
+.hero-text h1{
+    font-size: 58px;
+    /* título grande de impacto */
+
+    line-height: 1.1;
+    /* separación entre líneas */
+
+    margin-bottom: 20px;
+}
+
+.hero-text h1 span{
+    color: #ff4d6d;
+    /* palabra destacada */
+}
+
+.hero-text p{
+    font-size: 18px;
+    /* texto fácil de leer */
+
+    color: #d9d9d9;
+    /* gris suave elegante */
+
+    margin-bottom: 35px;
+
+    max-width: 550px;
+    /* evita líneas demasiado largas */
+}
+
+/* 
+========================================================
+CONTENEDOR DE BOTONES
+========================================================
+*/
+.buttons{
+    display: flex;
+    gap: 20px;
+    /* separación entre botones */
+
+    flex-wrap: wrap;
+    /* permite acomodarse en móvil */
+}
+
+/* 
+========================================================
+ESTILO BASE DE TODOS LOS BOTONES
+========================================================
+*/
+.btn{
+    text-decoration: none;
+    /* quita subrayado */
+
+    padding: 16px 28px;
+    /* tamaño interno */
+
+    border-radius: 50px;
+    /* botón redondeado premium */
+
+    font-weight: 600;
+
+    transition: 0.4s;
+    /* animación suave */
+
+    display: inline-block;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    /* sombra elegante */
+}
+
+/* 
+========================================================
+BOTÓN PRINCIPAL (WHATSAPP)
+========================================================
+*/
+.btn-primary{
+    background: #25D366;
+    /* verde oficial de WhatsApp */
+
+    color: white;
+}
+
+.btn-primary:hover{
+    transform: translateY(-5px);
+    /* se eleva al pasar mouse */
+
+    box-shadow: 0 15px 35px rgba(37,211,102,0.4);
+}
+
+/* 
+========================================================
+BOTÓN SECUNDARIO
+========================================================
+*/
+.btn-secondary{
+    background: #ff4d6d;
+    /* rosa moderno */
+
+    color: white;
+}
+
+.btn-secondary:hover{
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(255,77,109,0.4);
+}
+
+/* 
+========================================================
+IMAGEN PRINCIPAL DEL HERO
+========================================================
+*/
+.hero-image{
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.hero-image img{
+    width: 100%;
+    /* se adapta */
+
+    max-width: 500px;
+    /* límite máximo */
+
+    border-radius: 30px;
+    /* bordes modernos */
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+
+    animation: float 4s ease-in-out infinite;
+    /* animación flotante */
+}
+
+/* 
+========================================================
+ANIMACIÓN DE FLOTACIÓN
+Hace que la imagen suba y baje suavemente.
+========================================================
+*/
+@keyframes float{
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-15px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+/* 
+========================================================
+SECCIÓN DE SERVICIOS
+========================================================
+*/
+.services{
+    padding: 100px 8%;
+    text-align: center;
+}
+
+.services h2{
+    font-size: 42px;
+    margin-bottom: 50px;
+}
+
+/* 
+========================================================
+GRID DE TARJETAS
+auto-fit + minmax permite responsive automático.
+========================================================
+*/
+.cards{
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    /* crea columnas automáticas */
+
+    gap: 30px;
+    /* espacio entre tarjetas */
+}
+
+/* 
+========================================================
+TARJETAS INDIVIDUALES
+========================================================
+*/
+.card{
+    background: rgba(255,255,255,0.05);
+    /* fondo tipo glass */
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+
+    transition: 0.4s;
+}
+
+.card:hover{
+    transform: translateY(-10px);
+    /* efecto elevación */
+
+    border-color: #ff4d6d;
+    /* borde resaltado */
+}
+
+.card h3{
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.card p{
+    color: #d0d0d0;
+}
+
+/* 
+========================================================
+FOOTER / PIE DE PÁGINA
+========================================================
+*/
+footer{
+    text-align: center;
+    padding: 40px 20px;
+    color: #bbb;
+}
+
+/* 
+========================================================
+RESPONSIVE DESIGN
+Se activa en pantallas menores a 768px
+(celulares y tablets pequeñas)
+========================================================
+*/
+@media(max-width:768px){
+
+    .hero{
+        text-align: center;
+        /* centra contenido */
+
+        padding-top: 40px;
+    }
+
+    .hero-text h1{
+        font-size: 42px;
+        /* reduce tamaño en móvil */
+    }
+
+    .buttons{
+        justify-content: center;
+        /* centra botones */
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 
+========================================================
+NAVBAR PRINCIPAL
+========================================================
+-->
+<nav>
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo de Studio UP">
+    </div>
+</nav>
+
+<!-- 
+========================================================
+SECCIÓN PRINCIPAL HERO
+Aquí ocurre la primera impresión del cliente.
+========================================================
+-->
+<section class="hero">
+
+    <!-- COLUMNA DE TEXTO -->
+    <div class="hero-text">
+
+        <h1>
+            Tu estilo, tu <span>mejor versión</span>
+        </h1>
+
+        <p>
+            Somos una estética unisex especializada en cortes modernos para caballeros, 
+            efectos y cambios de look para damas, colorimetría, tratamientos capilares 
+            y mucho más. ¡Haz tu cita hoy mismo!
+        </p>
+
+        <!-- CONTENEDOR DE BOTONES -->
+        <div class="buttons">
+
+            <!-- 
+            BOTÓN WHATSAPP #1
+            Abre una conversación directa con Ismael
+            -->
+            <a href="https://wa.me/5210000000000?text=Hola%20Ismael%20Pacheco,%20quiero%20información%20sobre%20sus%20servicios"
+               class="btn btn-primary"
+               target="_blank">
+               WhatsApp Ismael Pacheco
+            </a>
+
+            <!-- 
+            BOTÓN WHATSAPP #2
+            Abre una conversación directa con Sonia
+            -->
+            <a href="https://wa.me/5210000000000?text=Hola%20Sonia%20Urbina,%20quiero%20información%20sobre%20sus%20servicios"
+               class="btn btn-secondary"
+               target="_blank">
+               WhatsApp Sonia Urbina
+            </a>
+
+        </div>
+    </div>
+
+    <!-- IMAGEN PRINCIPAL -->
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" 
+             alt="Estética Unisex">
+    </div>
+
+</section>
+
+<!-- 
+========================================================
+SECCIÓN DE SERVICIOS
+========================================================
+-->
+<section class="services">
+
+    <h2>Nuestros Servicios</h2>
+
+    <div class="cards">
+
+        <!-- TARJETA 1 -->
+        <div class="card">
+            <h3>Corte para Caballero</h3>
+            <p>
+                Fade, degradados, cortes clásicos y modernos 
+                con acabado profesional.
+            </p>
+        </div>
+
+        <!-- TARJETA 2 -->
+        <div class="card">
+            <h3>Color y Efectos</h3>
+            <p>
+                Balayage, mechas, tintes, efectos de color 
+                y transformación total.
+            </p>
+        </div>
+
+        <!-- TARJETA 3 -->
+        <div class="card">
+            <h3>Corte para Dama</h3>
+            <p>
+                Diseños modernos, estilizado profesional 
+                y asesoría de imagen.
+            </p>
+        </div>
+
+        <!-- TARJETA 4 -->
+        <div class="card">
+            <h3>Tratamientos</h3>
+            <p>
+                Hidratación, keratina, reparación capilar 
+                y cuidado profundo.
+            </p>
+        </div>
+
+        <!-- TARJETA 5 -->
+        <div class="card">
+            <h3>Uñas acrilicas</h3>
+            <p>
+                Diseños que rompen el molde. Desde lo clásico
+                hasta el estilo más vanguardista.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- 
+========================================================
+FOOTER FINAL
+========================================================
+-->
+<footer>
+    © 2026 Estética Unisex | Elegancia, estilo y confianza
+</footer>
+
+</body>
+</html>
