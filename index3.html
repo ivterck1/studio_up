@@ -97,30 +97,25 @@
 <body class="relative min-h-screen overflow-x-hidden lg:overflow-hidden flex flex-col lg:flex-row text-white">
 
     <!-- Canvas Background: Malla Digital Orgánica -->
-    <!-- Aumentamos un poco la opacidad para que resalte más en móvil -->
+    <!-- Se mantiene opacity-50 pero ahora se verá en toda la pantalla porque quitamos los fondos sólidos -->
     <canvas id="techCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-50 mix-blend-screen"></canvas>
 
     <!-- PANEL IZQUIERDO: STICKY HERO -->
-    <!-- Cambiado a flex-col con flex-1 en el centro para una distribución perfecta en móvil -->
-  <!-- PANEL IZQUIERDO: STICKY HERO -->
-    <!-- Quitamos el justify-center estricto y usamos márgenes automáticos (my-auto) con un gap mayor -->
-    <aside class="relative z-10 w-full lg:w-5/12 min-h-[100dvh] lg:min-h-0 lg:h-screen flex flex-col p-6 sm:p-8 lg:p-8 xl:p-12 border-b lg:border-b-0 lg:border-r border-cyber-border bg-cyber-dark/50 backdrop-blur-md lg:overflow-y-auto hide-scroll">
+    <!-- CAMBIO CLAVE: Se cambió bg-cyber-dark/50 y backdrop-blur-md por bg-transparent -->
+    <aside class="relative z-10 w-full lg:w-5/12 min-h-[100dvh] lg:min-h-0 lg:h-screen flex flex-col p-6 sm:p-8 lg:p-8 xl:p-12 border-b lg:border-b-0 lg:border-r border-cyber-border bg-transparent lg:overflow-y-auto hide-scroll">
         
         <!-- Top: Logo -->
         <div class="flex-none reveal pt-2 lg:pt-0">
-            <img src="logo.png" alt="Studio UP" class="h-16 lg:h-14 xl:h-20 2xl:h-24 object-contain">
+            <img src="img/logo.png" alt="Studio UP" class="h-16 lg:h-14 xl:h-20 2xl:h-24 object-contain">
         </div>
 
         <!-- Middle: Headline & Desc -->
-        <!-- Cambiamos a my-auto para que distribuya el espacio de forma más natural y aumentamos tamaños base -->
         <div class="flex-1 flex flex-col my-auto justify-center gap-6 py-10 lg:py-4 xl:py-8">
-            <!-- Aumentamos de text-5xl a text-6xl (o 5xl con tracking más apretado) para móvil -->
             <h1 class="font-display text-[3.5rem] leading-[0.95] sm:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tighter reveal delay-1 antialiased">
                 <span class="text-outline block mb-3">Tu estilo,</span>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-pink to-cyber-cyan block">tu mejor versión</span>
             </h1>
             
-            <!-- Engrosamos un poco el texto (font-normal en vez de light) y aumentamos el tamaño base -->
             <p class="font-sans text-white/60 text-base sm:text-lg lg:text-sm xl:text-base font-normal leading-relaxed max-w-md reveal delay-2">
                 Somos una estética unisex especializada en cortes modernos para caballeros, efectos y cambios de look para damas, colorimetría, tratamientos capilares y mucho más. <strong class="text-white font-semibold">¡Haz tu cita hoy mismo!</strong>
             </p>
@@ -226,16 +221,16 @@
     <script>
         lucide.createIcons();
 
-        // Canvas: Malla Digital Orgánica
         const canvas = document.getElementById('techCanvas');
         const ctx = canvas.getContext('2d');
         
         let width, height;
         let points = [];
         let mouse = { x: -1000, y: -1000 };
-        let time = 0; // Variable de tiempo para respiración orgánica
+        let time = 0;
 
-        const connectionRadius = 85; 
+        // CAMBIO CLAVE: Aumentamos el radio de conexión para que los puntos se sigan uniendo aunque sean menos
+        const connectionRadius = 110; 
         const mouseRadius = 150; 
 
         function resize() {
@@ -248,8 +243,9 @@
 
         function initPoints() {
             points = [];
-            // Si es celular, la cuadrícula es más densa (40px) para que se vean más puntos
-            const currentSpacing = window.innerWidth < 768 ? 40 : 60; 
+            // CAMBIO CLAVE: Aumentamos drásticamente el espacio entre puntos (menos densidad)
+            // 85px en móvil (antes 40px) y 120px en PC (antes 60px)
+            const currentSpacing = window.innerWidth < 768 ? 85 : 120; 
             
             for (let x = 0; x < width + currentSpacing; x += currentSpacing) {
                 for (let y = 0; y < height + currentSpacing; y += currentSpacing) {
@@ -260,7 +256,7 @@
                         y: y,
                         vx: 0,
                         vy: 0,
-                        randomOffset: Math.random() * 100 // Desfase para que no respiren todos al mismo tiempo
+                        randomOffset: Math.random() * 100
                     });
                 }
             }
@@ -276,7 +272,6 @@
             mouse.y = e.touches[0].clientY;
         });
 
-        // Cuando sacas el dedo/mouse, los puntos siguen respirando
         window.addEventListener('mouseout', () => {
             mouse.x = -1000;
             mouse.y = -1000;
@@ -288,23 +283,20 @@
 
         function render() {
             ctx.clearRect(0, 0, width, height);
-            time += 0.015; // Velocidad de la respiración general
+            time += 0.015; 
             
-            ctx.strokeStyle = 'rgba(255, 20, 83, 0.2)'; // Rosa neón
-            ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';    // Cyan neón
+            ctx.strokeStyle = 'rgba(255, 20, 83, 0.2)'; 
+            ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';    
 
             points.forEach(p => {
-                // FÍSICA 1: Movimiento orgánico constante (Respiración)
                 let targetX = p.originX + Math.sin(time + p.randomOffset) * 10;
                 let targetY = p.originY + Math.cos(time + p.randomOffset) * 10;
 
-                // FÍSICA 2: Atracción hacia su punto de origen dinámico
                 let dxOrig = targetX - p.x;
                 let dyOrig = targetY - p.y;
                 p.vx += dxOrig * 0.02;
                 p.vy += dyOrig * 0.02;
 
-                // FÍSICA 3: Repulsión del dedo o mouse
                 let dxMouse = mouse.x - p.x;
                 let dyMouse = mouse.y - p.y;
                 let distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -315,20 +307,17 @@
                     p.vy -= (dyMouse / distMouse) * force * 2.5;
                 }
 
-                // Fricción para suavizar el movimiento
                 p.vx *= 0.88;
                 p.vy *= 0.88;
 
                 p.x += p.vx;
                 p.y += p.vy;
 
-                // Dibujar el nodo
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
                 ctx.fill();
             });
 
-            // Conectar nodos cercanos
             for (let i = 0; i < points.length; i++) {
                 for (let j = i + 1; j < points.length; j++) {
                     let p1 = points[i];
